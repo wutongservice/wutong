@@ -5,22 +5,22 @@
 
 <a href="https://github.com/wutongservice/wutong/raw/master/publish/Wutong.pptx"> 简介</a>
 
-test account: account:10000, pwd:wutong
+###test account: account:10000, pwd:wutong
 
-android 主客户
+##android 主客户
 <a href="http://api.borqs.com/search?q=com.borqs.qiupu">Download</a>
 <img href="https://github.com/wutongservice/wutong/blob/master/publish/stream.png"/>
 
 
-Web UI
+##Web UI
 <a href="http://bpc.borqs.com">Web Wutong</a>
 <img href="https://github.com/wutongservice/wutong/raw/master/publish/web.png"/>
 
-企业通讯录
+##企业通讯录
 <img href="https://github.com/wutongservice/wutong/blob/master/publish/direct.png"/>
 <img href="https://raw.githubusercontent.com/wutongservice/wutong/master/publish/directory.png"/>
 
-应用市场
+##应用市场
 <img href="https://raw.githubusercontent.com/wutongservice/wutong/master/publish/appstore.png"/>
 
 
