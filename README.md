@@ -20,7 +20,7 @@
 
 ##企业通讯录
 
-<img src="https://github.com/wutongservice/wutong/blob/master/publish/direct.png" height="300px"/><img src="https://raw.githubusercontent.com/wutongservice/wutong/master/publish/directory.png" height="300px"/>
+<img src="https://github.com/wutongservice/wutong/blob/master/publish/direct.png" height="300px"/>            <img src="https://raw.githubusercontent.com/wutongservice/wutong/master/publish/directory.png" height="300px"/>
 
 ##应用市场
 
