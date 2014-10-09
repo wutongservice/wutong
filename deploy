@@ -1,0 +1,113 @@
+一、        阿里云
+1、 虚拟机
+   外网： 42.121.15.199
+   内网： 10.200.56.148
+   wutong:  borqs.com
+   root: 9E618e1f
+   本机数据库： root/111111 用于apidoc和AppBilling
+2、RDS数据库服务
+   主机：borqsservice.mysql.rds.aliyuncs.com
+   数据库用户名、密码和名称见production.config.properties
+3、OSS存储服务
+   OSS内网连接：storage-vm.aliyun-inc.com
+   private final String accessId = "42azpskan63xg69r03qx7x9x";
+    private final String accessKey = "Jhas2oPaqmsHytGy/bNMzRPHHGo=";
+private final String ossEndpoint = "http://oss.aliyuncs.com/";
+ 
+4、售后服务
+https://passport.alipay.com/login/login.htm?fromSite=6&params=%7B%22site%22%3A%226%22%7D
+用户名：w15729
+密码： w15729
+电话：84177722
+ 
+二、        XCP
+1、 梧桐服务器
+  192.168.7.142
+zhengwei: borqs.com
+root: Q1w2e3r4
+数据库用户名、密码和名称见xcp.config.properties
+2、应用分享服务器
+   192.168.7.146
+zhengwei: borqs.com
+root: Q1w2e3r4
+数据库用户名、密码和名称见xcp.config.properties
+3、nginx反向代理服务器
+   192.168.7.152
+zhengwei: borqs.com
+root: Q1w2e3r4
+启动nginx脚本：/home/zhengwei/deploy/res/scripts/start_nginx
+停止nginx脚本：/home/zhengwei/deploy/res/scripts/stop_nginx
+nginx配置文件： /home/zhengwei/opt/nginx.conf
+注意：启停nginx需要使用root权限
+域名：http://apptest0.borqs.com
+ 
+三、        部署
+1、 目录结构
+部署脚本放在阿里云服务器的/mnt/bak/deploy/目录下，其中的bin目录是部署软件的命令，res是资源目录，tmp是临时目录。
+ 
+2、安装软件前的准备工作
+使用yum命令安装cmake, ncurses-devel, libncurses5-dev, bison, g++, gcc,
+gcc-c++,expect
+阿里云yum安装gcc失败解决方法:修改文件vi /etc/yum.conf 将exclude=kernel*前加注释即可解决。
+在运行下面的脚本时，需要根据服务器相应的配置情况，修改/mnt/bak/deploy/res/config/deploy.ini中的对应的具体参数。
+ 
+3、mysql的安装和配置
+执行bin目录下的mysql.py即可。
+安装后需要修改root用户密码和设置数据库的远程访问，然后导入数据。
+需要配置CentOS打开mysql的3306端口，方法如下：
+vi /etc/sysconfig/iptables
+增加一行：
+ 
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+ 
+service iptables restart
+iptables -L
+4、jdk的安装
+执行bin目录下的jdk.py即可。在/etc/profile将java加入PATH中，参见阿里云上的配置/home/wutong/jdk….。
+ 
+5、memcacheq的安装
+执行bin目录下的memcacheq.py即可。
+ 
+6、memcached的安装
+执行bin目录下的memcached.py即可。
+ 
+7、nginx的安装和配置
+执行bin目录下的nginx.py即可，配置参见阿里云上的/home/wutong/opt/nginx.conf
+ 
+8、redis的安装和配置
+执行bin目录下的redis.py即可。
+9、x64 aapt的配置
+执行bin目录下的x64_aapt.py即可。
+ 
+10、部署程序
+运行192.168.5.22上的sync_code，将最新编译好的程序部署到目标服务器上，如果目标服务器或者部署的目录需要修改，修改sync_code脚本即可。
+ 
+11、脚本
+所有启停的脚本均在阿里云的/home/wutong/workWT目录下，如果目录发生变化，修改相应的脚本即可。
+ 
+12、计划任务
+安装yum install autoconf vixie-cron
+ yum install autoconf crontabs
+ 
+需要添加计划任务，使用crontab -e进行编辑。
+添加后，使用crontab -l查看。
+重启cron服务： /etc/init.d/crond restart
+具体配置参加阿里云上目前的配置。
+ 
+13、监控脚本
+/home/wutong/monitor/bin/access.py，发现服务器异常时，会自动重启服务器程序，并产生相应的log，在/home/wutong/monitor/logs目录下。
+/home/wutong/workWT/auto_restart_nginx，发现服务器磁盘空间不足时，自动重启nginx。
+9E618e1f
+四、        启动服务器
+1、  以root用户执行：/home/wutong/workWT/start_nginx
+2、  以root用户执行：/etc/init.d/mysqld start
+3、  以wutong用户执行：/home/wutong/workWT/start_mq
+4、  以wutong用户执行： nohup memcached start &
+5、  以wutong用户执行： /home/wutong/workWT/start_redis
+6、  以wutong用户执行： /home/wutong/workWT/kill_server.py
+7、  以wutong用户执行： /home/wutong/workWT/restart_server.py
+8、  以wutong用户执行： nohup /home/wutong/monitor/bin/access.py &
+9、  以wutong用户执行： nohup /home/wutong/workWT/auto_restart_nginx &(废弃)
+启动auto_restart_nginx 脚本的时候需要使用screen命令，首先打开screen，在命令行窗口执行auto_restart_nginx，之后detached窗口
+ 
+Notif:3350f2a
