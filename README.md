@@ -16,7 +16,7 @@
 ##Web UI
 <a href="http://bpc.borqs.com">Web Wutong</a>
 
-<img src="https://github.com/wutongservice/wutong/raw/master/publish/web.png" height="300px"/>
+<img src="https://github.com/wutongservice/wutong/raw/master/publish/web.png" height="300px"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/wutongservice/wutong/raw/master/publish/circle.png" height="300px"/>
 
 ##企业通讯录
 
